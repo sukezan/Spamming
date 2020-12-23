@@ -1,6 +1,5 @@
 '''
-このプログラムはコマンドラインファイルのパスを入力するとそのファイルを分かち書きして出力.
-入力の形：import_and_mecab.py 学習データ.txt（任意の数）任意のファイル名.json
+Tokenize or train the file input
 '''
 import os
 import json
@@ -35,8 +34,8 @@ def mecab_parse(lines):
     tokenized = []
     freq_words_with_label = {}
     for line in lines:
-        words_sep = mecab.parse(line).split() #分かち書きしたものをwords_sepに格納
-        tokenized.append(words_sep) #二重リストに格納 ex. = [['S','値段','は',...],['N','学会','の',...]]
+        words_sep = mecab.parse(line).split() 
+        tokenized.append(words_sep) 
 
     return tokenized
 
@@ -56,17 +55,17 @@ def labels_get(tokenized):
 def classify(tokenized,labels,mail_count):
     words_list_collect = []
     words_labels_dict = {}
-    for words_list in tokenized: #二重ループになってるそれぞれのメールのリスtを取り出
+    for words_list in tokenized:
         for label in labels:
-            if label in words_list: #もしwords_listにlabelが入っていれば...
+            if label in words_list: 
                 words_list.remove(label)
-                if label in words_labels_dict: #words_with_label_dictのkeyにlabelが格納されていれば
+                if label in words_labels_dict: 
                     words_list_from_dict = words_labels_dict[label] 
                     words_list_from_dict += words_list
         
                     words_labels_dict[label] = words_list_from_dict 
                 else:
-                    words_labels_dict[label] = words_list #ラベルごとの辞書型で格納
+                    words_labels_dict[label] = words_list 
     words_labels_dict['MAIL_COUNT'] = mail_count
     
     return words_labels_dict
@@ -74,14 +73,12 @@ def classify(tokenized,labels,mail_count):
 def train(words_labels_dict,labels):
     word_count = {}
     for label in labels: 
-        words_list = words_labels_dict[label] #key=labelのvalue(単語のリスト)を取り出す
-        word_Sum_per_label = len(words_list) #words_list内の全単語数(label毎)をword_Sumに格納 
+        words_list = words_labels_dict[label] 
+        word_Sum_per_label = len(words_list) 
+        word_count[label] = word_Sum_per_label 
 
-        word_count[label] = word_Sum_per_label #words_Num_dictsに{label:全単語数}を格納
-
-        counted = dict(Counter(words_list)) #単語と頻度の辞書 ex. counted = {"学会":23,"参加":14}
-        words_labels_dict[label] = counted #key=labelの辞書にcounted辞書を格納した多重辞書
-        #words_trained_dictはラベルごとの単語と頻度を二重辞書型で格納 ex {N:{"学会":32}S:{"値段":12}}
+        counted = dict(Counter(words_list)) 
+        words_labels_dict[label] = counted 
     words_labels_dict['WORD_COUNT'] = word_count
 
     return words_labels_dict
