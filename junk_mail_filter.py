@@ -72,7 +72,7 @@ def predict(mail_wakati_dict, word_count, mail_count, predict_data, labels, prob
 
 def get_option():
     argparser = ArgumentParser(prog='spam_mail_filter.py', 
-                               usage='Determine whether a mail is spam or non-spam.',
+                               usage='Determine whether a mail is spam or anything else.',
                                description='description',
                                epilog='end', 
                                add_help=True, 

@@ -25,10 +25,12 @@ def switch(algorithm,lines,output_file):
         labels, mail_count = labels_get(tokenized)
         words_labels_dict = classify(tokenized,labels,mail_count)
         word_labels_dict = train(words_labels_dict,labels)
-        make_json_file(words_labels_dict, args.output)
+        make_json_file(words_labels_dict, output_file)
+        print('json file generated')
     elif 'tokenize' in algorithm:
         tokenized = mecab_parse(lines)
         make_csv(tokenized,output_file)
+        print('csv file generated')
 # tokenizer
 def mecab_parse(lines):
     tokenized = []
@@ -47,7 +49,7 @@ def labels_get(tokenized):
         labels = list(set(labels_all))
     for label in labels:
         mail_count[label] = labels_all.count(label)
-    mail_count['ALL'] = len(label_all)
+    mail_count['ALL'] = len(labels_all)
 
     return labels, mail_count
         
