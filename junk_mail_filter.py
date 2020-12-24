@@ -14,36 +14,34 @@ def import_from_command_line():
     return files_path_or_num
 
 def file_input(file_path,file_path_pd):
-    labels = []
     predict_data = {}
-    mail_wakati_dict = {}
-    file_names = []
+    trained_data = {}
     with open(file_path,'r',encoding='utf-8') as f: 
         file_json = json.load(f) 
-        mail_wakati_dict = json.loads(file_json) 
+        trained_data = json.loads(file_json) 
 
     with open(file_path_pd,'r',encoding='utf-8') as f:
         reader = csv.reader(f)
         for row in reader:
             predict_data = row
 
-    return mail_wakati_dict, predict_data
+    return trained_data, predict_data
 
 #Function to calculate the probability of word occurrence from training data
-def get_info(mail_wakati_dict):
-    word_count = mail_wakati_dict['WORD_COUNT']
-    mail_count = mail_wakati_dict['MAIL_COUNT']
+def get_info(trained_data):
+    word_count = trained_data['WORD_COUNT']
+    mail_count = trained_data['MAIL_COUNT']
 
-    mail_wakati_dict.pop('WORD_COUNT')
-    mail_wakati_dict.pop('MAIL_COUNT')
+    trained_data.pop('WORD_COUNT')
+    trained_data.pop('MAIL_COUNT')
 
-    dict_key = mail_wakati_dict.keys()
+    dict_key = trained_data.keys()
     labels = list(dict_key) 
  
-    return mail_wakati_dict, word_count, mail_count, labels
+    return trained_data, word_count, mail_count, labels
 
 #Function to determine the email is spam or something else
-def predict(mail_wakati_dict, word_count, mail_count, predict_data, labels, prob_unknown_words):
+def predict(trained_data, word_count, mail_count, predict_data, labels, prob_unknown_words):
     probs_dict = {}
     probs_list = []
     max_score = 0
@@ -52,11 +50,11 @@ def predict(mail_wakati_dict, word_count, mail_count, predict_data, labels, prob
         
         
         for word in predict_data:
-            if word not in mail_wakati_dict[label]:
+            if word not in trained_data[label]:
                 probs_list.append(prob_unknown_words) #Dealing with unknown words
                 continue
             else:
-                probs_list.append(mail_wakati_dict[label][word] / word_count[label])
+                probs_list.append(trained_data[label][word] / word_count[label])
         normalization = [1-n for n in probs_list]
         probs_list.clear() 
         list(normalization)
@@ -71,8 +69,7 @@ def predict(mail_wakati_dict, word_count, mail_count, predict_data, labels, prob
 
 def get_option():
     argparser = ArgumentParser(prog='spam_mail_filter.py', 
-                               usage='Determine whether a mail is spam or anything else.',
-                               description='description',
+                               description='Determine whether a mail is junk or anything else',
                                epilog='end', 
                                add_help=True, 
                                 )
@@ -96,9 +93,9 @@ def main():
     file_path = str(args.trainedData)
     file_path_pd = str(args.distinguished)
     prob_unknown_words = float(args.unknownFigures)
-    mail_wakati_dict, predict_data = file_input(file_path,file_path_pd)
-    mail_wakati_dict, word_count, mail_count, labels = get_info(mail_wakati_dict)
-    predict(mail_wakati_dict,word_count, mail_count, predict_data,labels,prob_unknown_words)
+    trained_data, predict_data = file_input(file_path,file_path_pd)
+    trained_data, word_count, mail_count, labels = get_info(trained_data)
+    predict(trained_data,word_count, mail_count, predict_data,labels,prob_unknown_words)
 
 
 if __name__ == "__main__":
