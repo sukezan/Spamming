@@ -1,6 +1,6 @@
 # Spamming
 Determine whether a mail is junk or anything else.
-
+<img width="1068" alt="demo_image" src="https://user-images.githubusercontent.com/43489292/103073632-491aa680-460b-11eb-936a-eb0cc1a9018b.png">
 ## Description 
 These tools are programs that tokenize and determine whether a mail is junk or anything else.(Japanese text only)
 
