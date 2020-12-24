@@ -49,7 +49,7 @@ git clone https://github.com/sukezan/Spamming.git
 ```
 
 ## Usage
-1. To generate json file for train data `python3 tokenizer_train.py -a train -ip training.txt -op trainData.json`:
+1. To generate json file for train data `tokenizer_train.py`:
 ```
 $ python3 tokenizer_train.py -a train -ip training.txt -op trainData.json
 ```
@@ -74,4 +74,5 @@ S, 今週のセール情報：最新の洗濯機がメール会員様限定価�
 
 ## License
 sukezan/Spamming is licensed under the MIT License
+
 Copyright (c) 2020 Kosuke Yamagami
