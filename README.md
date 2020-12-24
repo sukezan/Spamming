@@ -47,11 +47,6 @@ optional arguments:
 ## Requirement
 Python3 or more
 
-## Installation
-```
-git clone https://github.com/sukezan/Spamming.git
-```
-
 ## Usage
 1. To generate json file for train data `tokenizer_train.py`:
 ```
