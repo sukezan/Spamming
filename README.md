@@ -2,7 +2,7 @@
 Determine whether a mail is junk or anything else.
 
 ![24.Dec.2020]
-https://user-images.githubusercontent.com/43489292/103072780-96961400-4609-11eb-8195-be4523b32920.png
+(https://user-images.githubusercontent.com/43489292/103072780-96961400-4609-11eb-8195-be4523b32920.png)
 
 ## Description 
 These tools are programs that tokenize and determine whether a mail is junk or anything else.(Japanese text only)
