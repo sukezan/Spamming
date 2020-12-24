@@ -1,8 +1,13 @@
 # Spamming
-Detect junk or anything else.
+Determine whether a mail is junk or anything else.
+
+![24.Dec.2020]
+https://user-images.githubusercontent.com/43489292/103072780-96961400-4609-11eb-8195-be4523b32920.png
 
 ## Description 
-These tools are programs that tokenize and identify junk mail.(Japanese text only)
+These tools are programs that tokenize and determine whether a mail is junk or anything else.(Japanese text only)
+
+I have not yet confirmed that the English text works. I'm planning to implement that function.
 
 ## Features
 - Tokenize or train tokenized data.
@@ -71,6 +76,7 @@ python3 junk_mail_filter.py -td trainData.json -dh tokenized_data.csv -uf 0.001
 N, 今回の学会発表は2020年3月22日15時より行います。
 S, 今週のセール情報：最新の洗濯機がメール会員様限定価格で59800円！
 ```
+- Prepare the training data by yourself.  
 
 ## License
 sukezan/Spamming is licensed under the MIT License

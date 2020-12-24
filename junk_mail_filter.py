@@ -67,7 +67,6 @@ def predict(mail_wakati_dict, word_count, mail_count, predict_data, labels, prob
         probs_dict[label] = prob 
     
     max_label = min(probs_dict, key=probs_dict.get) 
-    print(probs_dict)
     print('The label of this mail is '+max_label)
 
 def get_option():
