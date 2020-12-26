@@ -71,7 +71,8 @@ python3 junk_mail_filter.py -td trainData.json -dh tokenized_data.csv -uf 0.001
 ### note:
 - Training data must habe label first
 ```
-//example data (training.txt):
+//example data (training.txt)
+// 'N' is label of Non-Spam, 'S' is label of Spam 
 N, 今回の学会発表は2020年3月22日15時より行います。
 S, 今週のセール情報：最新の洗濯機がメール会員様限定価格で59800円！
 ```
