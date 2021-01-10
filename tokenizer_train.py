@@ -11,30 +11,30 @@ from argparse import ArgumentParser
 mecab = MeCab.Tagger("-Owakati")
 
 def file_input(file_path): 
-    lines = []
+    sentences = []
     with open(file_path,'r') as f:
         for line in f:
             line = line.rstrip()
-            lines.append(line) 
+            sentences.append(line) 
 
-    return lines
+    return sentences
 
-def switch(algorithm,lines,output_file):
+def switch(algorithm,sentences,output_file):
     if 'train' in algorithm:
-        tokenized = mecab_parse(lines)
+        tokenized = mecab_parse(sentences)
         labels, mail_count = labels_get(tokenized)
         labels_dict = classify(tokenized,labels,mail_count)
         word_labels_dict = train(labels_dict,labels)
         make_json_file(labels_dict, output_file)
         print('json file generated')
     elif 'tokenize' in algorithm:
-        tokenized = mecab_parse(lines)
+        tokenized = mecab_parse(sentences)
         make_csv(tokenized,output_file)
         print('csv file generated')
 # tokenizer
-def mecab_parse(lines):
+def mecab_parse(sentences):
     tokenized = []
-    for line in lines:
+    for line in sentences:
         words_sep = mecab.parse(line).split() 
         tokenized.append(words_sep) 
 
@@ -124,9 +124,9 @@ def main():
     args = get_option()
     file_path = args.input
     algorithm = args.algorithm
-    lines = file_input(file_path)
+    sentences = file_input(file_path)
     output_file = args.output
-    switch(algorithm,lines,output_file)
+    switch(algorithm,sentences,output_file)
 
 if __name__ == '__main__':
     main()

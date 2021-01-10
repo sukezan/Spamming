@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 # coding: utf-8
 '''
 This program uses training data and discriminant data to determine whether the discriminant data is junk or other mail.
@@ -5,13 +6,8 @@ This program uses training data and discriminant data to determine whether the d
 import sys
 import csv
 import json
-import scipy.stats
 from collections import Counter
 from argparse import ArgumentParser
-
-def import_from_command_line():
-    files_path_or_num = sys.argv
-    return files_path_or_num
 
 def file_input(file_path,file_path_pd):
     predict_data = {}
