@@ -1,12 +1,21 @@
 # Spamming
 Determine whether a mail is junk or anything else
 
-## Description 
+# Table of contents
+- [Desctiption](https://github.com/sukezan/Spamming#description)
+- [Features](https://github.com/sukezan/Spamming#features)
+- [Demo](https://github.com/sukezan/Spamming#demo)
+- [Requirement](https://github.com/sukezan/Spamming#requirement)
+- [Installation](https://github.com/sukezan/Spamming#installation)
+- [Usage](https://github.com/sukezan/Spamming#usage)
+- [License](https://github.com/sukezan/Spamming#license)
+
+# Description 
 These tools are programs that tokenize and determine whether a mail is junk or anything else.(Japanese text only)
 
 I have not yet confirmed that the English text works. I'm planning to implement that function
 
-## Features
+# Features
 - Tokenize or train tokenized data
 ```
 $ python3 tokenizer_train.py -h
@@ -40,19 +49,19 @@ optional arguments:
                         Specify the figures of unknown word
 ```
 
-## Demo
+# Demo
 <img width="1068" alt="demo-image" src="https://user-images.githubusercontent.com/43489292/103074073-318fed80-460c-11eb-9642-6d17bdcb4a8a.png">
 
-## Requirement
+# Requirement
 Python3 or more
 
-## Installation
+# Installation
 ```
 $ git clone https://github.com/sukezan/Spamming.git
 $ cd Spamming
 ```
 
-## Usage
+# Usage
 1. To generate json file for train data `tokenizer_train.py`:
 ```
 $ python3 tokenizer_train.py -a train -ip training.txt -op trainData.json
@@ -68,7 +77,7 @@ $ python3 tokenizer_train.py -a tokenize -ip disc_data.txt -op tokenized_data.cs
 python3 junk_mail_filter.py -td trainData.json -dh tokenized_data.csv -uf 0.001
 ```
 
-### note:
+## note:
 - Training data must habe label first
 ```
 //example data (training.txt)
@@ -78,7 +87,7 @@ S, 今週のセール情報：最新の洗濯機がメール会員様限定価�
 ```
 - Prepare the training data by yourself
 
-## License
+# License
 sukezan/Spamming is licensed under the MIT License
 
 Copyright (c) 2020 Kosuke Yamagami
